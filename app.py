@@ -1,6 +1,5 @@
 import streamlit as st
 import smtplib as mail
-import webbrowser 
 import wikipedia
 import datetime 
 from gtts import gTTS
@@ -33,15 +32,14 @@ with st.sidebar:
     
 def open_website():
     site = st.text_input("ENTER A WEBSITE").lower()
-    if st.button("🌍 VISIT NOW"):
-        if site=="youtube":
-            webbrowser.open("https://www.youtube.com")
-        elif site=="google":
-            webbrowser.open("https://www.google.com")
-        elif site=="facebook":
-            webbrowser.open("https://www.facebook.com")
-        elif site=="linkedin":
-            webbrowser.open("https://www.linkedin.com")
+    if site=="youtube":
+        st.link_button("🌍 OPEN YOUTUBE","https://www.youtube.com")
+    elif site=="google":
+        st.link_button("🌍 OPEN GOOGLE","https://www.google.com")
+    elif site=="facebook":
+        st.link_button("🌍 OPEN FACEBOOK","https://www.facebook.com")
+    elif site=="linkedin":
+        st.link_button("🌍 OPEN LINKEDIN","https://www.linkedin.com")
 
 
 st.markdown("""
@@ -82,4 +80,7 @@ elif features=="Send Email":
 else:
     open_website()
     
-    
+     
+     
+     
+     
