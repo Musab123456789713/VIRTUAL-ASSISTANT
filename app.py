@@ -32,13 +32,13 @@ with st.sidebar:
     
 def open_website():
     site = st.text_input("ENTER A WEBSITE").lower()
-    if site=="youtube":
+    if "youtube" in site:
         st.link_button("🌍 OPEN YOUTUBE","https://www.youtube.com")
-    elif site=="google":
+    elif "google" in site:
         st.link_button("🌍 OPEN GOOGLE","https://www.google.com")
-    elif site=="facebook":
+    elif "facebook" in site:
         st.link_button("🌍 OPEN FACEBOOK","https://www.facebook.com")
-    elif site=="linkedin":
+    elif "linkedin" in site:
         st.link_button("🌍 OPEN LINKEDIN","https://www.linkedin.com")
 
 
