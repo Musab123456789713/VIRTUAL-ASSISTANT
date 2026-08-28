@@ -3,13 +3,17 @@ import smtplib as mail
 import wikipedia
 import datetime 
 from gtts import gTTS
+from pathlib import Path
 
 def speech(words):
-    tts = gTTS(text=words, lang='en')
-    tts.save("speech.mp3")
-    with st.expander("🔊  VOICE RESPONSE"):
-        st.audio("speech.mp3")
+    BASE_DIR = Path(__file__).resolve().parent
+    audio_file = BASE_DIR / "speech.mp3"
     
+    tts = gTTS(text=words, lang="en")    
+    tts.save(str(audio_file))
+    with st.expander("🔊 VOICE RESPONSE"):
+        st.audio(str(audio_file))
+        
 st.markdown("""<h1 style='text-align: center'>VIRTUAL ASSISTANT</h1>""",unsafe_allow_html=True)
 with st.sidebar:
     st.markdown("""
@@ -32,27 +36,18 @@ with st.sidebar:
     
 def open_website():
     site = st.text_input("ENTER A WEBSITE").lower()
-    if "youtube" in site:
+    if site=="youtube":
         st.link_button("🌍 OPEN YOUTUBE","https://www.youtube.com")
-    elif "google" in site:
+    elif site=="google":
         st.link_button("🌍 OPEN GOOGLE","https://www.google.com")
-    elif "facebook" in site:
+    elif site=="facebook":
         st.link_button("🌍 OPEN FACEBOOK","https://www.facebook.com")
-    elif "linkedin" in site:
+    elif site=="linkedin":
         st.link_button("🌍 OPEN LINKEDIN","https://www.linkedin.com")
 
 
-st.markdown("""
-            <style>
-            .block-container{
-                padding-top: 2rem;
-            }
-            </style>
-            """,unsafe_allow_html=True)
-
-
-features = st.selectbox("HOW MAY I HELP YOU TODAY: ", ["Search on Wikipedia", "Send Email", "Open Website"])
-if features=="Search on Wikipedia":
+features = st.selectbox("HOW MAY I HELP YOU TODAY: ", ["SEARCH ON WIKIPEDIA",  "SEND EMAIL", "OPEN WEBSITE"])
+if features=="SEARCH ON WIKIPEDIA":
     try:
         query = st.text_input("ENTER A QUERY TO SEARCH")
         results = wikipedia.summary(query, sentences=2)
@@ -62,7 +57,7 @@ if features=="Search on Wikipedia":
         st.warning("WAIT A SECOND")
     
 
-elif features=="Send Email":
+elif features=="SEND EMAIL":
     email = st.text_input("ENTER YOUR EMAIL: ")
     password = st.text_input("ENTER PASSWORD: ", type="password")
     receiver = st.text_input("ENTER EMAIL OF RECEIVER: ")
@@ -80,7 +75,11 @@ elif features=="Send Email":
 else:
     open_website()
     
-     
-     
-     
-     
+      
+st.markdown("""
+            <style>
+            .block-container{
+                padding-top: 2rem;
+            }
+            </style>
+            """,unsafe_allow_html=True)
