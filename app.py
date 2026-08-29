@@ -50,7 +50,7 @@ features = st.selectbox("HOW MAY I HELP YOU TODAY: ", ["SEARCH ON WIKIPEDIA",  "
 if features=="SEARCH ON WIKIPEDIA":
     try:
         query = st.text_input("ENTER A QUERY TO SEARCH")
-        results = wikipedia.summary(query, sentences=2).upper()
+        results = wikipedia.summary(query, sentences=2).capitallize()
         st.write(results)
         speech(results)
     except Exception:
