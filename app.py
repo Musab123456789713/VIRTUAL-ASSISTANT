@@ -17,7 +17,7 @@ def speech(words):
 st.markdown("""<h1 style='text-align: center'>VIRTUAL ASSISTANT</h1>""",unsafe_allow_html=True)
 with st.sidebar:
     st.markdown("""
-                <p style='font-family:Arial; font-size: 18px;'> <br> This is a simple Python based Virtual Assistant built with Streamlit that helps users perform useful daily tasks through text commands. <br>
+                <p style='font-family:Arial; font-size: 18px;'> <br> This is a simple Python based Virtual Assistant built with Streamlit that helps users perform useful daily tasks through Text commands. <br>
                 Key Features:<br>
                 1️⃣ Search on Wikipedia. <br>
                 2️⃣ Send Email. <br>
@@ -36,13 +36,13 @@ with st.sidebar:
     
 def open_website():
     site = st.text_input("ENTER A WEBSITE").lower()
-    if site=="youtube":
+    if "youtube" in site:
         st.link_button("🌍 OPEN YOUTUBE","https://www.youtube.com")
-    elif site=="google":
+    elif "google" in site:
         st.link_button("🌍 OPEN GOOGLE","https://www.google.com")
-    elif site=="facebook":
+    elif "facebook" in site:
         st.link_button("🌍 OPEN FACEBOOK","https://www.facebook.com")
-    elif site=="linkedin":
+    elif "linkedin" in site:
         st.link_button("🌍 OPEN LINKEDIN","https://www.linkedin.com")
 
 
@@ -50,7 +50,7 @@ features = st.selectbox("HOW MAY I HELP YOU TODAY: ", ["SEARCH ON WIKIPEDIA",  "
 if features=="SEARCH ON WIKIPEDIA":
     try:
         query = st.text_input("ENTER A QUERY TO SEARCH")
-        results = wikipedia.summary(query, sentences=2)
+        results = wikipedia.summary(query, sentences=2).upper()
         st.write(results)
         speech(results)
     except Exception:
